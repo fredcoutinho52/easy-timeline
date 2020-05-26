@@ -132,6 +132,7 @@ clear: both;
     margin-top: 5px;
 }
 
+/* Responsive code */
 @media (max-width: 767px) {
     ul.timeline:before {
         left: 40px;

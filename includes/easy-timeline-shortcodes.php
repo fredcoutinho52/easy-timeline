@@ -1,11 +1,11 @@
 <?php
 
 // list awards
-function at_list_awards($atts, $content=null) {
+function estl_list_items($atts, $content=null) {
     global $post;
 
     $atts = shortcode_atts(array(
-        'title' => 'Awards Timeline',
+        'title' => 'Items Timeline',
         'count' => 20,
         'category' => 'all'
     ), $atts);
@@ -25,7 +25,7 @@ function at_list_awards($atts, $content=null) {
 
     // query args
     $args = array(
-        'post_type' => 'award',
+        'post_type' => 'item',
         'post_status' => 'publish',
         'orderby' => 'created',
         'order' => 'DESC',
@@ -34,10 +34,10 @@ function at_list_awards($atts, $content=null) {
     );
 
     // fetch awards
-    $awards = new WP_Query($args);
+    $items = new WP_Query($args);
 
     // check for awards
-    if($awards->have_posts()) {
+    if($items->have_posts()) {
         $category = str_replace('-', ' ', $atts['category']);
 
         // init output
@@ -50,11 +50,11 @@ function at_list_awards($atts, $content=null) {
         $output .= '<div class="container timeline-container">';
         $output .= '<ul class="timeline">';
 
-        while($awards->have_posts()) {
-            $awards->the_post();
+        while($items->have_posts()) {
+            $items->the_post();
 
             // get field values
-            $award_date = get_post_meta($post->ID, 'award_date', true);
+            $item_date = get_post_meta($post->ID, 'item_date', true);
             $description = get_post_meta($post->ID, 'description', true);
 
             // building each post
@@ -70,7 +70,7 @@ function at_list_awards($atts, $content=null) {
 
             $output .= '<div class="timeline-heading">';
             $output .= '<h4 class="timeline-title">' . get_the_title() . '</h4>';
-            $output .= '<p class="date"><small class="text-muted">' . $award_date . '</small></p>';
+            $output .= '<p class="date"><small class="text-muted">' . $item_date . '</small></p>';
             $output .= '</div>';
 
             $output .= '<div class="timeline-body">';
@@ -92,9 +92,9 @@ function at_list_awards($atts, $content=null) {
 
         return $output;
     } else {
-        return '<p>No Awards Found</p>';
+        return '<p>No Items Found</p>';
     }
 }
 
 // awards list shortcode
-add_shortcode('awards', 'at_list_awards');
+add_shortcode('timeline', 'estl_list_items');

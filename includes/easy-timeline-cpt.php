@@ -1,12 +1,12 @@
 <?php
 
 // create custom post type
-function at_register_award() {
-    $singular_name = apply_filters('yg_label_single', 'Award');
-    $plural_name = apply_filters('yg_label_plural', 'Awards');
+function estl_register_item() {
+    $singular_name = apply_filters('estl_label_single', 'Item');
+    $plural_name = apply_filters('estl_label_plural', 'Items');
 
     $labels = array(
-        'name' => $plural_name,
+        'name' => 'Timeline Items',
         'singular_name' => $singular_name,
         'add_new' => 'Add New',
         'add_new_item' => 'Add New ' . $singular_name,
@@ -18,12 +18,12 @@ function at_register_award() {
         'search_items' => 'Search ' . $plural_name,
         'not_found' => 'No ' . $plural_name . ' Found',
         'not_found_in_trash' => 'No ' . $plural_name . ' Found',
-        'menu_name' => $plural_name
+        'menu_name' => 'Timeline'
     );
 
-    $args = apply_filters('at_award_args', array(
+    $args = apply_filters('estl_item_args', array(
         'labels' => $labels,
-        'description' => 'Awards by category',
+        'description' => 'Items by category',
         'taxonomies' => array('category'),
         'public' => true,
         'show_in_menu' => true,
@@ -37,7 +37,7 @@ function at_register_award() {
     ));
 
     // resgiter post type
-    register_post_type('award', $args);
+    register_post_type('item', $args);
 }
 
-add_action('init', 'at_register_award');
+add_action('init', 'estl_register_item');
