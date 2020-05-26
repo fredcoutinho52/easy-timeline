@@ -1,6 +1,6 @@
 # Esy Timeline
 
-A Wordpress plugin for show an awards timeline on your website. Available on: https://br.wordpress.org/plugins/easy-timeline/
+A Wordpress plugin for show a timeline on your website. Available on: https://br.wordpress.org/plugins/easy-timeline/
 
 ## Tools Used
 
